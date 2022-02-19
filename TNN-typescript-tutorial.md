@@ -217,6 +217,40 @@ let mixed: (string|number|boolean)[] = [];
 ```
 We use the | symbol to mean OR. So in the example above, the array can contain either string, number or boolean types. 
 
+Union types can also be used on variables that are not arrays. For example, we can declare an `id` variable that coule be either in string or number format: 
+
+`let id: string|number`
+Here, we don't need to use parantheses because we are not declaring an array. 
+
+
+### Explicit type with objects
+
+The simplest way to declare a variable as an object type is like this:
+
+```
+let ninjaOne = object;
+
+ninjaOne = {
+  name: 'Mario',
+  age: 30
+};
+
+ninjaOne = [];  // THIS IS ALLOWED!
+```
+
+Note that we could even assign `ninjaOne` to be an array, since an array is a type of object in JS. 
+
+However we could be more specific about the type of object we want a variable to be assigned. 
+
+```
+let ninjaTwo: {
+  name: string,
+  age: number
+};
+```
+
+The above code says that ninjaTwo must be an object, and must have the specified properties inside it, with the specified types respectively. If we try to give it an array value, it won't work. 
+
 
 
 

@@ -674,6 +674,46 @@ class Invoice {
 }
 ```
 
+## 14 - Modules
+
+We can use ES6 modules (import/export) in TS like we can in JS, but only modern browsers support this feature. TS doesn't compile modules into something older browsers can understand as well. 
+
+In order to use modules with TS, go to the TS config file: 
+
+```
+"target": "es6"
+"module": "es2015"
+``` 
+
+Then in index.html, add the type attribute to the script tag:
+
+`<script type="module" src='app.js'></script>`
+
+Examle of using modules: Move the code for the original Invoice class into a separate file, `invoice.ts`. 
+
+In invoice.ts, all we need is to add `export` in front of the class:
+
+`export class Invoice { ... }`
+
+Import in app.js:
+
+`import { Invoice } from './classes/Invoice.js'`
+
+Note that we are importing from the JS file, not the TS file. 
+
+Although this works, there are two major drawbacks:
+
+1. Only modern browsers support this module system. 
+
+2. It doesn't bundle our code into a single file. If we check the public folder, we see that there are two compiles JS files: Invoice.js and app.js. This means we are making requests to both of these JS files from the browser. 
+
+To combat both of these, we could use Webpack - but this is not the focus of this course.
+
+
+
+
+
+
 
 
 

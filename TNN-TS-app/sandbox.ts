@@ -1,22 +1,8 @@
-// let character = 'mario';
 
-// console.log(character);
+let age: number;
 
-// character = 'luigi';
+age = 5;
 
-// const test = 'LUIGI';
+let array: string[];
 
-// console.log(test);
-
-// const circ = (diameter:  number) => {
-//   return diameter * Math.PI;
-// };
-
-// console.log('circ: ', circ(7.5))
-
-
-// array 
-let names = ['luigi', 'mario', 'yoshi'];
-
-names.push('peach');
-names.push(5);
+array[0] = 'bob';

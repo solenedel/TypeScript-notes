@@ -188,6 +188,39 @@ If we try to take out one of the properties when we override the object- for exa
 
 
 
+## 5 - Explicit types & Union types
+
+### Explicit types
+
+Sometimes we want to initialise a variable without giving it a value, so TS can't infer its type. In this case, we can explicitly give the variable a type:
+
+`let character: string;`
+
+This basically means: initialise the character variable, don't give it a value yet but the value can only be a string in the future. 
+
+What about in the case of arrays?
+
+If we wanted an array of strings for example: 
+`let myArray: string[];`
+
+Note that the above line does not actually initialise the array with anything, so we would get an error if we tried to use methods like `push` on it. 
+
+To initialise the empty array: `let myArray: string[] = []`
+This is recommended over the previous line of code. 
+
+### Union types
+
+What if we want a mixed array with more than one type? In this case, we use a **union type**, which is basically a way to say that it could be one of several types.
+
+```
+let mixed: (string|number|boolean)[] = [];
+```
+We use the | symbol to mean OR. So in the example above, the array can contain either string, number or boolean types. 
+
+
+
+
+
 
 
 

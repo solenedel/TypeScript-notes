@@ -574,6 +574,8 @@ form.addEventListener('submit', (e: Event) => {
 
 Note that for the value field, use the property `valueAsNumber` because by default, any numbers submitted into an HTML input (even with the number type of input) will be turned into a string on submission. 
 
+
+
 ## 12 - Classes in TypeScript
 
 Classes are similar in TS and JS. A class is a blueprint for an object. 
@@ -615,6 +617,63 @@ This will only allow Invoice objects to be added to the array.
 By default when we create an object using the class, all properties (client, details, amount) are public on the class. This means whenever we create a new instance of the class, we can access all of these properties, and change them.  
 
 We don't always want to allow the properties to be changed later on in the code. In TS, we can use **access modifiers** to limit this.
+
+
+
+## 13 - Access modifiers: public, private & read-only
+
+The default behavior of classes is that all properties are public and can be changed. 
+
+Currently these two are the exact same: 
+```
+class Invoice {
+  client: string;
+  details: string;
+  amount: number;
+
+class Invoice {
+  public client: string;
+  public details: string;
+  public amount: number;
+```
+
+The `public` keywoard is an **access modifier**. It can be changed to `private`:
+
+```
+class Invoice {
+  private client: string;
+  private details: string;
+  private amount: number;
+```
+
+Now we cannot access the properties (not even log them to the console) from a new instance of the class. They can only be accessed from inside the class itself. 
+
+```
+invoices.forEach(inv) => {
+  console.log(inv.client, inv.details, inv.amount, inv.format());
+}
+```
+In teh code above, the first three values logged will produce an error because they are being accessed from outside the original class. However, because the `format()` method accesses them from **inside the class**, there will be no problems logging it to the console. 
+
+The last access modifier is **readonly**, which means we can read the property from outside the class, but we can't change it. Effectively, we can log the value to the console but cannot assign a new value to it. Note that a readonly property also **cannot be changed from inside the class**. On the other hand, `public` allows changing from inside the class.
+
+When using access modifiers, there is a shorter way to define the Invoice class:
+
+```
+class Invoice {
+
+  constructor(
+    readonly client: string;
+    private details: string;
+    public amount: number;
+  ){}
+
+  format() {
+    return `${this.client} owes ${this.amount}`;
+  }
+}
+```
+
 
 
 

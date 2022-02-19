@@ -2,6 +2,8 @@
 
 [link to playlist](https://www.youtube.com/watch?v=2pZmKW9-I_k&list=PL4cUxeGkcC9gUgr39Q_yD6v-bSyMwKPUI)
 
+[TypeScript docs](https://www.typescriptlang.org/docs/)
+
 ## 1 - Intro & setup
 
 TypeScript is a programming language that is an alternative to JS. It is a superset of JavaScript- meaning it extends it with new feature and syntax. It can do all the things JS can do, but more stuff as well. 
@@ -288,8 +290,39 @@ Likewise for objects:
 
 
 
+## 7 - Better workflow & tsconfig
 
+Right now in our simple project we have only one sandbox.ts and one sandbox.js file. In a more complex project, there would be several TS and JS files, which would be separated into folders. 
 
+A typical project organisation would be: 
+
+- **Public folder** (index.html, compiled JS file, CSS)
+- **src** (for source code that isn't deployed - such as the TS files)
+
+However, if we now compile the TS file, it will generate a new JS file in the same folder as the TS file (src) which is not what we want. To get around this, we can initialise a `tsconfic.json` file in the root of the project: 
+
+`tsc --init`
+
+This file contains all the configuration options for TS. 
+
+One of the options which is commented out by default, is the `rootDir` option. We will uncomment it and specify the src folder as the one containing the source code (TS). Also uncomment `outDir` and specify that the compiled code should go in the public folder:
+
+```
+"rootDir": "./src",
+"outDir": "./public", 
+```
+
+Now if we want to watch all of our TS files in the project, we can simply run `tsc -w` in the root of the project. 
+
+Not that creating a TS file outside the src folder will cause it to automatically compile the JS file in the public folder. To avoid this behavior, we can add something at the end of the `tsconfig` file: 
+
+```
+  },
+ "include": ["src"]
+}
+```
+
+This means "compile any TS files inside the src folder, but not anywhere else".
 
 
 

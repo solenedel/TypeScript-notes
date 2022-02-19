@@ -710,6 +710,69 @@ Although this works, there are two major drawbacks:
 To combat both of these, we could use Webpack - but this is not the focus of this course.
 
 
+### 15 - Interfaces
+
+Interfaces are a tool we can use in TS but not in JS. An **interface** allows us to impose a certain structure of a class or object. We can use it to describe the properties, their types, methods, etc. that are on the object. 
+
+This sounds a lot like a class already, but it's not the same because we don't use an interface to create new objects based on the interface. We only use it to enforce a certain structure for classes or objects. 
+
+Creating a simple interface: 
+
+```
+interface IsPerson {
+
+  name: string; 
+  age: number; 
+  speak(a: string): void;
+  spend(a: number): number;
+
+}
+```
+
+We don't have a constructor here, because we don't use this interface to actually create new instances of an `IsPerson` object. What our interface code says is: if in the future we have an object in the future that declares itself to be IsPerson, it must have these properties and methods. 
+
+For example, below we are declaring a variable `me` to be of type `IsPerson`:
+
+```
+const me: IsPerson = {};
+```
+Like this, there will be an error because the empty object we provided as a value, does not comply to the interface we defined for IsPerson. 
+
+
+
+```
+const me: IsPerson = {
+
+  name: 'Shaun',
+  age: 30,
+  speak(text: string):void {
+    console.log(text);
+  },
+  spend(amount: number): number {
+    console.log(`spent ${amount}`);
+    return amount;
+  }
+
+};
+```
+
+Now, the object is complying to the interface, so the code is valid. If we added an extra property, it would no longer match the interface and be invalid. 
+
+We can also declare a variable without giving it a value:
+`let someone: IsPerson;`
+Later on in the future when we do give a value to `someone`, it will have to follow the IsPerson interface.
+
+
+Another thing we can do is specify that a parameter taken in by a function must match the IsPerson interface:
+
+```
+const greetPerson = (person: IsPerson) => {
+  console.log('hello ', person.name);
+};
+```
+
+
+
 
 
 

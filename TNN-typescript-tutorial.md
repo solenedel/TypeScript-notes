@@ -326,6 +326,97 @@ This means "compile any TS files inside the src folder, but not anywhere else".
 
 
 
+## 8 - Function type basics
+
+In TS there is a **Function** type. 
+
+```
+let greet = () => {
+  console.log('hello');
+};
+```
+
+Here TS will automatically infer that `greet` has a type of function. As with other types, we can declare it as a Function type without automatically invoking it:
+
+` let greet: Function;`
+Note the capital F.
+
+
+### Optional parameters & default values
+
+Let's look again at the parameters we pass to a function:
+
+```
+const add = (a: number, b: number) => {
+  return a + b;
+};
+
+add(2 + 5);  // 7
+
+add(2);  // ERROR
+```
+The second example where we invoke this function, we get an error because we didn't pass in the second argument that was expected. In order to make an argument optional, we use the syntax: 
+
+```
+const add = (a: number, b: number, c?: number) => {
+  return a + b + c;
+};
+```
+
+The third paramater is optional in the example above. If we don't pass in the optional parameter, it becomes `undefined`. We can also specify a **default value** that an optional parameter should have if a number is not passed to it: 
+
+```
+const add = (a: number, b: number, c?: number = 10) => {
+  return a + b;
+};
+```
+
+Note that if we give a default value, we can remove the `?` syntax because even if nothing is passed in, it will use the default provided value. If a parameter is passed in, it overrides the default value. 
+
+```
+const add = (a: number, b: number, c: number = 10) => {
+  return a + b + c;
+};
+```
+
+We tend to not use both the `?` for optional parameters as well as providing a default value - just one or the other. 
+
+As well, it's good practice to put any optional or default parameters **at the end** of the list of parameters. In other words required parameters should be listed as the first ones in the function:
+
+`function(required, required, optional or default value)`
+
+
+### types of return values
+
+
+```
+const add = (a: number, b: number) => {
+  return a + b;
+};
+
+let result = add(2+7);
+```
+
+The `result` variable will automatically be given a number type. TS has inferred the type that is returned from the function. This means we cannot change the type of `result` in the future. 
+
+We can also explicitly state the type of the return value when we declare the function:
+
+
+```
+const add = (a: number, b: number): number => {
+  return a + b;
+};
+```
+This is not really necessary, but can be useful if the function is large - we can see from the first line what type the function is supposed to return. 
+
+What if a function doesn't return anything? For example, if the function just logs something to the console?
+
+Technically, this kind of function still has a return value called **void**. Void represents a complete lack of return value, and turns into undefined when it is compiled into JS. However in TS, void is completely separate from undefined.
+
+
+
+
+
 
 
 

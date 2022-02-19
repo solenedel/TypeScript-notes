@@ -449,7 +449,60 @@ const greet = (user: userObject) => {};
 This improves readability and reusability. 
 
 
+## 10 - Function types (signatures)
 
+We can be more specific when giving an explicit Function type to a variable, by assigning a **function signature**. The signature describes the general structure of a function- what arguments it takes in. and what type of data it returns.
+
+For example, the signature: `() => void` means that the function takes no arguments and does not have a return value. 
+
+### Example 1:
+
+```
+let greet: (a: string, b: string) => void;
+
+greet = (name: string, greeting: string) => {
+  console.log(`${name} says ${greeting}`);
+}
+```
+
+Note that we can name the parameters (a & b) whatever we want. It doesn't have to match the names we give to the arguments of the function when we invoke it. However, the types of the arguments themselves must match. 
+
+
+### Example 2:
+
+```
+let calc: (a: number, b: number, c: string) => number;
+
+calc = (numOne: number, numTwo: number, action: string):number => {
+  
+  if (action === 'add') return numOne + numTwo;
+
+  else return numOne - numTwo;
+}
+```
+
+
+### Example 3:
+
+```
+let logDetails: (obj: { name: string, age: number }) => void;
+
+logDetails = (ninja: {name: string, age: number}) => {
+  console.log(`${ninja.name} is `${ninja.age}`);
+}
+```
+
+We could use type aliases to make the code cleaner: 
+
+```
+let logDetails: (obj: { name: string, age: number }) => void;
+
+type person = { name: string, age: number };
+
+logDetails = (ninja: person) => {
+  console.log(`${ninja.name} is `${ninja.age}`);
+}
+```
 
 
 

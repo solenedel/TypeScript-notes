@@ -414,6 +414,39 @@ What if a function doesn't return anything? For example, if the function just lo
 Technically, this kind of function still has a return value called **void**. Void represents a complete lack of return value, and turns into undefined when it is compiled into JS. However in TS, void is completely separate from undefined.
 
 
+## 9 - Type aliases
+
+Sometimes when working with functions that take parameters, and specifying the types of the parameters themselves, the code can get messy and hard to read:
+
+For example:
+
+```
+const greet = (user: {name: string, id: string | number }) => {
+  console.log(....etc);
+};
+```
+
+We could also have more functions which uses exactly the same type specifications as another function - in which case we wouldn't want to repeat those specs. 
+
+We can define our own **type aliases** at the start of the file, and then use them in whatever functions we need. 
+
+```
+type stringOrNum = string | number;
+
+const greet = (user: {name: string, id: stringOrNum }) => {};
+```
+Likewise, we can specify the structure of an object: 
+
+```
+type userObject = {
+  name: string, 
+  id: stringOrNum
+};
+
+const greet = (user: userObject) => {};
+```
+
+This improves readability and reusability. 
 
 
 

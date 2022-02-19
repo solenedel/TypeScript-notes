@@ -52,12 +52,75 @@ There is a shortcut we can use if the name of the file before the extension is t
 
 This automatically compiles the code to a file with the same name but with the JS extension. 
 
-If we chack the compiled code in the JS file, we can see that it has changed `const` into `var`. The console log also now shows up in the browser. 
+If we check the compiled code in the JS file, we can see that it has changed `const` into `var`. The console log also now shows up in the browser. 
 
 However, there is now an error popping up in the TS file: `cannot re-declare block-scoped variable 'character'`. This is just happening if both the TS and JS files are open at the same time. If we close one file, the error will go away. 
 
 For now, every time we change the TS file, we need to manually recomiple it to the JS file. We would rather watch for the file constantly and only run the command once- to do this we can run: 
 
 `tsc sandbox.ts -w` which watches for changes in the file and compiles automatically. 
+
+
+## 3 - Type basics
+
+The main difference between TS and JS is that TS uses strict types- if we declare a variable in TS as a string for example, it will always be a string and its type cannot change later. 
+
+The way we declare a variable is exactly the same as we would in a JS file. 
+
+```
+let character = 'mario';
+let age = 30;
+let isRetired = false;
+```
+
+TS only has one **number** type for integers, decimals and float, like JS. If we try to set the `character` to a different data type like so: 
+
+```
+character = 20;
+```
+
+We get an error: `type number is not assignable to type string`. It is not letting us change the type. We can still change the variable to another string, but not any other data type. 
+
+Note that we don't need to `explicitly` state that character should be a string - TS infers that it should be a string based on the first value we assign it to. 
+
+
+We can also declare what type of variable we expect to be passed to a function as an argument. We can use regular or arrow functions in TS. 
+
+
+let's create a dummy function: 
+
+```
+const circ = (diameter) => {
+  return diameter * Math.PI;
+};
+```
+
+At the moment, we could pass any value to this function regardless of the type, without errors. 
+
+
+If we pass in a string: 
+
+`console.log(circ('hello'))`
+
+There will be no compilation errors from TS, but in the console, we can see that it returns `NaN`. In TS, we can define the expected type of an argument when we declare the function by using the folowing syntax:
+
+```
+const circ = (diameter: number) => {
+  return diameter * Math.PI;
+};
+```
+
+Now, the code should no longer compile if we try to pass in the string like before, because it requires the argument to be a number. 
+
+
+If we take a look at the JS file, the code doesn't actually seem different. This is because the code only compiles into the JS file if there are no errors in the TS files to begin with. 
+
+
+
+
+
+
+
+
 
 

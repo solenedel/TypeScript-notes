@@ -1,7 +1,15 @@
-const character = 'mario';
+// let character = 'mario';
 
-console.log(character);
+// console.log(character);
 
-const test = 'LUIGI';
+// character = 'luigi';
 
-console.log(test);
+// const test = 'LUIGI';
+
+// console.log(test);
+
+const circ = (diameter:  number) => {
+  return diameter * Math.PI;
+};
+
+console.log('circ: ', circ(7.5))

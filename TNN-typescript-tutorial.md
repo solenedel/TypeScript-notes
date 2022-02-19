@@ -505,5 +505,71 @@ logDetails = (ninja: person) => {
 ```
 
 
+## 11 - The DOM and typecasting
+
+We can use TS to interact with the DOM, just like with regular JS. For the most part, interacting in the DOM in TS is the same as with JS, but there are some key differences:
+
+### Example 1
+
+```
+const anchor = document.querySelector('a');
+
+console.log(anchor.href);
+```
+
+In TS, this would produce an error: `Object (anchor) is possibly null`. TS doesn't actually know whether there is an anchor tag during development. To take away this error in TS, we should first check that there actually is an anchor tag. 
+
+```
+if (anchor) console.log(anchor.href);
+```
+
+Alternatively, if we are certain that an anchor tag exists, we can add a `!` to the end of the query selector statement: `const anchor = document.querySelector('a')!`
 
 
+### Special types for DOM elements
+
+TS automatically contains special types for every DOM element. For example, the anchor that we selected would have the type `HTMLAnchorElement`. Thanks to these special types, we automatically have a bunch of associated methods on the element available. 
+
+
+### Example 2
+
+What if we are selecting a DOM element when there are several of that type of element on the same page? How can we bw certain that the selector statement will get us the right element? We could select it by the `class` of the specific element, which would work.
+
+```
+const form = document.querySelector('.form-one');
+```
+
+However, if we use the querySelector to select by something other than the html tag itself, the variable will be given a type of `Element`, rather than the specific type associated with the html element. A class can be applied to any element in html, so TS doesn't actually know what kind of element it is supposed to be. 
+
+We can use **typecasting** to specify what type of element it is supposed to be:
+
+```
+const form = document.querySelector('form') as HTMLFormElement;
+```
+This way, it will be given the type associated with the form element, rather than the standard `Element` tag. 
+
+Now let's try getting all of the input fields present inside the form. 
+
+```
+const invoiceType = document.querySelector('#invoiceType') as HTMLSelectElement;
+const toFrom = document.querySelector('#toFrom') as HTMLInputElement;
+const details = document.querySelector('#details') as HTMLInputElement;
+const value = document.querySelector('#value') as HTMLInputElement;
+```
+
+Add an event listener to the form: 
+
+```
+form.addEventListener('submit', (e: Event) => {
+  e.preventDefault();
+
+  console.log(
+    invoiceType.value,
+    toFrom.value, 
+    details.value, 
+    details.valueAsNumber
+  );
+});
+```
+
+Note that for the value field, use the property `valueAsNumber` because by default, any numbers submitted into an HTML input (even with the number type of input) will be turned into a string on submission. 

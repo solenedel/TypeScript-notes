@@ -573,3 +573,48 @@ form.addEventListener('submit', (e: Event) => {
 ```
 
 Note that for the value field, use the property `valueAsNumber` because by default, any numbers submitted into an HTML input (even with the number type of input) will be turned into a string on submission. 
+
+## 12 - Classes in TypeScript
+
+Classes are similar in TS and JS. A class is a blueprint for an object. 
+
+Let's create an `invoice` class: 
+
+```
+class Invoice {
+  client: string;
+  details: string;
+  amount: number;
+
+  constructor(c: string, d: string, a: number){
+    this.client = c;
+    this.details = d;
+    this.amount = a;
+  }
+
+  format() {
+    return `${this.client} owes ${this.amount}`;
+  }
+}
+
+const invOne = new Invoice('mario', 'plumbing', 250);
+const invTwo = new Invoice('luigi', 'plumbing', 300);
+```
+
+An example of something we can do is in the future, create an array and only allow this array to contain `Invoice` objects - much like only allowing specific type(s) of values in an array. 
+
+```
+let invoices: Invoice[] = [];
+
+invoices.push(invOne);
+invoices.push(invTwo);
+```
+
+This will only allow Invoice objects to be added to the array. 
+
+By default when we create an object using the class, all properties (client, details, amount) are public on the class. This means whenever we create a new instance of the class, we can access all of these properties, and change them.  
+
+We don't always want to allow the properties to be changed later on in the code. In TS, we can use **access modifiers** to limit this.
+
+
+

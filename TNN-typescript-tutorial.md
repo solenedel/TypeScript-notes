@@ -110,10 +110,39 @@ const circ = (diameter: number) => {
 };
 ```
 
-Now, the code should no longer compile if we try to pass in the string like before, because it requires the argument to be a number. 
+Now, the code should no longer compile if we try to pass in the string like before, because it requires the argument to be a number. If we change the argument into a number, the code will compile again.
 
 
 If we take a look at the JS file, the code doesn't actually seem different. This is because the code only compiles into the JS file if there are no errors in the TS files to begin with. 
+
+
+## 4 - Arrays & objects
+
+Here is an array of strings:
+```
+let names = ['luigi', 'mario', 'yoshi'];
+```
+
+We can push to the array a new string value with no issues:
+
+`names.push('peach')`
+
+However if we try to push a value that is not a string, it won't work. We can only add strings to this array- likewise if we try to change the value of an existing item using array indexing. 
+
+If we wanted to have a mixed array with different types, we just have to include those types when we first declare the array:
+
+```
+let mixed = ['luigi', 30, true, 14];
+```
+
+Now we can add, or change values, into three types: string, number or boolean. Note that we can even change the type of a value in a certain position of the array, as long as the array expects that data type. For example if array[0] is initially a string, and the array was declared containing numbers as well, then array[0] can be changed into a number value.
+
+
+
+
+
+
+
 
 
 

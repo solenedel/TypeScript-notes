@@ -118,6 +118,8 @@ If we take a look at the JS file, the code doesn't actually seem different. This
 
 ## 4 - Arrays & objects
 
+### Arrays in TypeScript
+
 Here is an array of strings:
 ```
 let names = ['luigi', 'mario', 'yoshi'];
@@ -137,11 +139,52 @@ let mixed = ['luigi', 30, true, 14];
 
 Now we can add, or change values, into three types: string, number or boolean. Note that we can even change the type of a value in a certain position of the array, as long as the array expects that data type. For example if array[0] is initially a string, and the array was declared containing numbers as well, then array[0] can be changed into a number value.
 
+**NOTE** When we declare an array in TS, we can't then reassign the entire array to a different type of value. For example: 
 
 
+```
+let names = ['luigi', 'mario'];
+
+names = 'hello'
+```
 
 
+### Objects in TypeScript
 
+```
+let ninja = {
+  name: 'mario',
+  belt: 'black',
+  age: 30
+};
+```
+
+In the case of objects, if we declare a property to be a specific type, then it can only ever be that type. (As with arrays, the entire `ninja` object also cannot be redefined into another type such as a string).
+
+```
+ninja.age = 40  // OK
+ninja.name = 'peach' // OK
+ninja.age = 'hello'  // ERROR
+```
+
+We also cannot add on extra properties to the object after we first define them. 
+
+`ninja.skills = ['fight', 'sneak']`
+
+This will not work because the skills property did not exist on the ninja object to begin with. 
+
+
+We can however, override the object with new values like this: 
+
+```
+ninja = {
+  name: 'Yoshi',
+  belt: 'green',
+  age: 45
+};
+```
+
+If we try to take out one of the properties when we override the object- for example if we remove the age property- there will be an error. It needs to match the structure of the object that we initially declared. 
 
 
 

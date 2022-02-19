@@ -252,6 +252,40 @@ let ninjaTwo: {
 The above code says that ninjaTwo must be an object, and must have the specified properties inside it, with the specified types respectively. If we try to give it an array value, it won't work. 
 
 
+## 6 - Dynamic (any) types
+
+In TS, the **any** type is used to say that a variable can be any type, and can also change types in the future. 
+
+```
+let age: any;
+
+age = 25;
+```
+
+Note that there is a shortcut to give the type and assign a value to the variable in one line like so: `let age: any = 25`
+
+Even though age is given a number value, its type is still `any` as we can see when we hover over the variable. 
+
+```
+let age: any = 25;
+
+age = 'hello';
+age = { name: 'Bob' }; 
+```
+
+The code above is valid since age has a type of any. Note that this is essentially just using TS like normal JS, which defeats the purpose of using TS. There may be some rare cases where we would need to assign the **any** type, but we should be wary of using it. An example of when we could need this type is if we don't know what type a variable will have in the future.
+
+
+### Any type with arrays and objects
+
+The code below creates an empty array that can accept any type of value.
+
+`let mixed: any[] = []`
+
+Likewise for objects: 
+
+`let ninja: {name: any, age: any}`
+
 
 
 

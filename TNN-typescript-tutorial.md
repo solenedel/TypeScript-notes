@@ -841,3 +841,24 @@ const docOne: Resource<object> = {
 ```
 
 If we log `docOne` to the console, we see that the resourceType property is the number `0` and not `BOOK`. This is because `BOOK` is in the first index location of the enum we defined. (ie. FILM would be `2` and so on). Each keyword is associated with a specific number.
+
+
+## 20 - Tuples
+
+**Tuples** are another type which are a bit like arrays as we use square brackets to define them, and we can use array methods on them. But there is one major difference: they types of data in a tuple is fixed once it has been initialised. 
+
+```
+let array = ['bob', 25, false];
+array[0] = true;
+```
+
+We know that the code above would be valid in TS because the array can contain either strings, numbers or booleans. Any of the three types can be in any of the array positions.
+
+With tuples, once we define a certain position as being a certain type, then we can't change the type found in that position. Note that for a tuple, we must explicitly define its type otherwise it will assume it's a normal array. 
+
+```
+let tup: [string, number, boolean] = ['bob', 25, false];
+```
+
+If we tried to switch the positions of the values in the array, it would throw an error because it doesn't follow the type positions we explicitly stated. 
+

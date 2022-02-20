@@ -772,10 +772,60 @@ const greetPerson = (person: IsPerson) => {
 ```
 
 
+### 16 - Interfaces with classes 
+
+https://www.youtube.com/watch?v=XPGFqx8Vg-Y&list=PL4cUxeGkcC9gUgr39Q_yD6v-bSyMwKPUI&index=16
 
 
 
+### 17 - Rendering an HTML template
 
+https://www.youtube.com/watch?v=X-mUYxLjqLY&list=PL4cUxeGkcC9gUgr39Q_yD6v-bSyMwKPUI&index=17
+
+
+
+### 18 - Intro to generics
+
+**Generics** are a TS feature which can be confusing. They allow us to create reusable blocks of code which can be reused with different types. 
+
+The function below takes an object as an argument a new object based on it, but with a unique id property added to it:
+
+```
+const addUID = (obj: object) => {
+  let uid = Math.floor(Math.random() * 100);
+  return {...obj, uid}
+};
+
+let docOne = addUID({name: 'yoshi', age: 40});
+```
+
+There is one problem: if we try to access a property on `docOne` for example: 
+`docOne.name`, we get an error. This is because when we pass in an object to the function, we are not specifying exactly what the object should be structured like, and it doesn't know what properties were on the object we passed in. It doesn't know a name or age propety exists on the object. 
+
+We can combat this by using a generic- syntax is as follows: 
+
+```
+const addUID = <T>(obj: T) => {}
+```
+The letter inside <> could be anything, but typically we use `<T>`. What the generic does is captures any properties that are on the object we passed as an argument, so that in the returned object, it knows what the properties on the argument object were. 
+
+Now we can access the name ane age properties on docOne. But currently it means we have also removed the object type specification that we initially had in our function definition. Whatever is passed to the function, its type will be captured but it is no longer saying that the argument must be an object. 
+
+To specify it must be an object:
+`const addUID = <T extends object>(obj: T) => {}`
+
+We can even get more specific than this and extend a specific type of object- for exmaple an object with a name property:
+`const addUID = <T extends {name: string}>(obj: T) => {}`
+
+Now we can only pass in objects with a name property. 
+
+
+### Using generics with interfaces
+
+https://www.youtube.com/watch?v=IOzkOXSz9gE&list=PL4cUxeGkcC9gUgr39Q_yD6v-bSyMwKPUI&index=18
+
+
+## 19 - Enums
 
 
 

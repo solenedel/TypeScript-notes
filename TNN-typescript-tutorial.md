@@ -827,6 +827,17 @@ https://www.youtube.com/watch?v=IOzkOXSz9gE&list=PL4cUxeGkcC9gUgr39Q_yD6v-bSyMwK
 
 ## 19 - Enums
 
+**Enums** are a special type in TS which allow us to store a set of constants/keywords, and associate them with a numeric value. 
+
+```
+enum ResourceType = { BOOK, AUTHOR, FILM, PERSON }
 
 
+const docOne: Resource<object> = {
+  uid: 1, 
+  resourceType: ResourceType.BOOK, 
+  data: { title: 'Name of the Wind'}
+}
+```
 
+If we log `docOne` to the console, we see that the resourceType property is the number `0` and not `BOOK`. This is because `BOOK` is in the first index location of the enum we defined. (ie. FILM would be `2` and so on). Each keyword is associated with a specific number.
